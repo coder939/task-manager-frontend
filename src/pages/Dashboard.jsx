@@ -202,14 +202,7 @@ function Dashboard() {
             {/* Global Dashboard Overview */}
             <div className="dashboard-section">
 {overview && (
-    <div
-        style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "20px",
-            marginBottom: "30px",
-        }}
-    >
+    <div className="dashboard-overview-grid">
         <div className="dashboard-card" style={{ animationDelay: "0s" }}>
             <div className="dashboard-card-icon">📁</div>
             <h3>Total Projects</h3>

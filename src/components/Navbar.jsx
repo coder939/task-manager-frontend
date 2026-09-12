@@ -197,6 +197,7 @@ function Navbar({
     return (
         <>
             <div
+                className="app-navbar"
                 style={{
                     height: "70px",
                     backgroundColor: colors.navbar,
@@ -223,6 +224,7 @@ function Navbar({
             >
                 {/* Left side */}
                 <div
+                    className="navbar-left"
                     style={{
                         display: "flex",
                         alignItems: "center",
@@ -249,6 +251,7 @@ function Navbar({
                     </button>
 
                     <h2
+                        className="navbar-title"
                         style={{
                             margin: 0,
                             whiteSpace: "nowrap",
@@ -260,6 +263,7 @@ function Navbar({
 
                 {/* Right side */}
                 <div
+                    className="navbar-actions"
                     style={{
                         display: "flex",
                         alignItems: "center",
@@ -281,6 +285,7 @@ function Navbar({
 
                     {/* 🌙 Dark Mode */}
                     <button
+                        type="button"
                         onClick={() =>
                             setDarkMode((prev) => !prev)
                         }
@@ -320,6 +325,7 @@ function Navbar({
                         }}
                     >
                         <button
+                            type="button"
                             onClick={() =>
                                 setShowNotifications(
                                     (prev) => !prev
@@ -609,8 +615,11 @@ function Navbar({
 
                     {/* Logout */}
                     <button
+                        type="button"
                         onClick={logout}
                         className="logout-btn"
+                        title="Logout"
+                        aria-label="Logout"
                         style={{
                             padding: "10px 18px",
                             cursor: "pointer",
@@ -620,7 +629,15 @@ function Navbar({
                             color: "white",
                         }}
                     >
-                        Logout
+                        <span
+                            className="logout-mobile-icon"
+                            aria-hidden="true"
+                        >
+                            ↪
+                        </span>
+                        <span className="logout-text">
+                            Logout
+                        </span>
                     </button>
                 </div>
             </div>
@@ -776,7 +793,66 @@ function Navbar({
                         display: none;
                     }
 
+                    .logout-mobile-icon {
+                        display: none;
+                    }
+
                     @media (max-width: 768px) {
+                        .app-navbar {
+                            height: 64px !important;
+                            padding: 0 12px !important;
+                            gap: 8px;
+                        }
+
+                        .navbar-left {
+                            flex: 1;
+                            gap: 8px !important;
+                            min-width: 0;
+                            overflow: hidden;
+                        }
+
+                        .navbar-title {
+                            min-width: 0;
+                            max-width: 150px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            font-size: 19px;
+                        }
+
+                        .navbar-actions {
+                            flex-shrink: 0;
+                            gap: 4px !important;
+                        }
+
+                        .theme-toggle {
+                            padding: 6px !important;
+                            font-size: 20px !important;
+                        }
+
+                        .bell-btn {
+                            padding: 6px !important;
+                            font-size: 21px !important;
+                        }
+
+                        .logout-btn {
+                            min-width: 38px;
+                            min-height: 38px;
+                            padding: 8px 10px !important;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        .logout-mobile-icon {
+                            display: inline;
+                            font-size: 19px;
+                            line-height: 1;
+                        }
+
+                        .logout-text {
+                            display: none;
+                        }
+
                         .mobile-menu-button {
                             display: block;
                         }
@@ -795,6 +871,19 @@ function Navbar({
                     }
 
                     @media (max-width: 480px) {
+                        .app-navbar {
+                            padding: 0 9px !important;
+                        }
+
+                        .navbar-title {
+                            max-width: 120px;
+                            font-size: 17px;
+                        }
+
+                        .navbar-actions {
+                            gap: 2px !important;
+                        }
+
                         .notification-dropdown {
                             right: 10px !important;
                             left: 10px !important;

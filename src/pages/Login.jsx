@@ -14,6 +14,9 @@ function Login() {
     useEffect(() => {
         const root = document.documentElement;
 
+        root.style.colorScheme =
+            darkMode ? "dark" : "only light";
+
         localStorage.setItem(
             "theme",
             darkMode ? "dark" : "light"

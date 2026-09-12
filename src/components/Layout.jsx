@@ -6,21 +6,29 @@ import AIAssistant from "./AIAssistant";
 function Layout({ children }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    // Load saved theme
     const [darkMode, setDarkMode] = useState(() => {
         return localStorage.getItem("theme") === "dark";
     });
 
-    // Apply global theme
     useEffect(() => {
         const root = document.documentElement;
+        const body = document.body;
 
-        localStorage.setItem(
-            "theme",
-            darkMode ? "dark" : "light"
+        const theme = darkMode ? "dark" : "light";
+
+        localStorage.setItem("theme", theme);
+
+        root.dataset.theme = theme;
+        body.dataset.theme = theme;
+
+        root.style.colorScheme =
+            darkMode ? "dark" : "only light";
+
+        root.style.setProperty(
+            "--page-bg",
+            darkMode ? "#111827" : "#f5f6f8"
         );
 
-        // Theme variables
         root.style.setProperty(
             "--bg-color",
             darkMode ? "#111827" : "#f5f6f8"
@@ -78,68 +86,109 @@ function Layout({ children }) {
                 : "rgba(0,0,0,0.1)"
         );
 
-        // Body
-        document.body.style.backgroundColor =
+        body.style.backgroundColor =
             darkMode ? "#111827" : "#f5f6f8";
 
-        document.body.style.color =
+        body.style.color =
             darkMode ? "#f9fafb" : "#111827";
 
-        document.body.style.transition =
+        body.style.transition =
             "background-color 0.2s ease, color 0.2s ease";
     }, [darkMode]);
 
     return (
-        <div
-            style={{
-                display: "flex",
-                minHeight: "100vh",
-                backgroundColor: "var(--bg-color)",
-                color: "var(--text-color)",
-                transition:
-                    "background-color 0.2s ease, color 0.2s ease",
-            }}
-        >
-            <Sidebar
-                sidebarOpen={sidebarOpen}
-                setSidebarOpen={setSidebarOpen}
-                darkMode={darkMode}
-            />
+        <>
+            <style>
+                {`
+                    html,
+                    body,
+                    #root {
+                        width: 100%;
+                        min-height: 100%;
+                        margin: 0;
+                    }
 
-            <div
-                style={{
-                    flex: 1,
-                    minWidth: 0,
-                }}
-            >
-                <Navbar
+                    html,
+                    body {
+                        overflow-x: hidden;
+                        background: var(--bg-color);
+                    }
+
+                    .app-shell {
+                        display: flex;
+                        width: 100%;
+                        min-height: 100vh;
+                        min-height: 100dvh;
+                        background: var(--bg-color);
+                        color: var(--text-color);
+                        transition:
+                            background-color 0.2s ease,
+                            color 0.2s ease;
+                    }
+
+                    .app-content {
+                        flex: 1;
+                        min-width: 0;
+                        width: calc(100% - 220px);
+                    }
+
+                    .app-main {
+                        width: 100%;
+                        min-width: 0;
+                        min-height: calc(100vh - 70px);
+                        min-height: calc(100dvh - 70px);
+                        padding: 30px;
+                        box-sizing: border-box;
+                        background: var(--bg-color);
+                        color: var(--text-color);
+                        overflow-x: hidden;
+                        transition:
+                            background-color 0.2s ease,
+                            color 0.2s ease;
+                    }
+
+                    @media (max-width: 768px) {
+                        .app-content {
+                            width: 100%;
+                        }
+
+                        .app-main {
+                            min-height: calc(100vh - 64px);
+                            min-height: calc(100dvh - 64px);
+                            padding: 18px 14px 90px;
+                        }
+                    }
+
+                    @media (max-width: 480px) {
+                        .app-main {
+                            padding: 16px 12px 90px;
+                        }
+                    }
+                `}
+            </style>
+
+            <div className="app-shell">
+                <Sidebar
+                    sidebarOpen={sidebarOpen}
                     setSidebarOpen={setSidebarOpen}
                     darkMode={darkMode}
-                    setDarkMode={setDarkMode}
                 />
 
-                <main
-                    style={{
-                        padding: "30px",
-                        width: "100%",
-                        boxSizing: "border-box",
-                        backgroundColor:
-                            "var(--bg-color)",
-                        color: "var(--text-color)",
-                        minHeight:
-                            "calc(100vh - 70px)",
-                        transition:
-                            "background-color 0.2s ease, color 0.2s ease",
-                    }}
-                >
-                    {children}
-                </main>
-            </div>
+                <div className="app-content">
+                    <Navbar
+                        setSidebarOpen={setSidebarOpen}
+                        darkMode={darkMode}
+                        setDarkMode={setDarkMode}
+                    />
 
-            {/* Global authenticated AI assistant.
-                Every page that uses Layout gets it automatically. */}
-            <AIAssistant />
-        </div>
+                    <main className="app-main">
+                        {children}
+                    </main>
+                </div>
+
+                <AIAssistant />
+            </div>
+        </>
     );
 }
 
