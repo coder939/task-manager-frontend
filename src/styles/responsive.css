@@ -1,0 +1,631 @@
+/* ============================================================
+   Shared responsive polish
+   Keeps every screen usable from small phones to wide desktops.
+============================================================ */
+
+.app-main-inner,
+.dashboard-page,
+.tasks-page,
+.profile-page,
+.kanban-page {
+    min-width: 0;
+}
+
+.app-main-inner h1 {
+    overflow-wrap: anywhere;
+}
+
+.app-main-inner p,
+.app-main-inner span,
+.app-main-inner strong,
+.app-main-inner a {
+    overflow-wrap: anywhere;
+}
+
+.app-main-inner input,
+.app-main-inner select,
+.app-main-inner textarea {
+    min-width: 0;
+}
+
+.app-main-inner textarea {
+    resize: vertical;
+}
+
+
+/* Shared page-header rhythm */
+.app-main-inner .projects-title,
+.app-main-inner .tasks-title,
+.app-main-inner .users-title,
+.app-main-inner .profile-title,
+.app-main-inner .kanban-header h1 {
+    margin-top: 0;
+
+    font-size:
+        clamp(
+            28px,
+            2.7vw,
+            36px
+        );
+
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+}
+
+.app-main-inner .users-description,
+.app-main-inner .profile-subtitle,
+.app-main-inner .kanban-header > p {
+    color: var(--secondary-text);
+    line-height: 1.5;
+}
+
+.confirm-overlay {
+    z-index: 5000 !important;
+
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+.confirm-box {
+    max-height:
+        calc(
+            100vh - 36px
+        );
+    max-height:
+        calc(
+            100dvh - 36px
+        );
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* Public authentication screens */
+.login-page,
+.register-page,
+.forgot-password-page,
+.reset-password-page {
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+}
+
+.login-card,
+.register-card,
+.forgot-password-card,
+.reset-password-card {
+    max-width: 420px !important;
+}
+
+.public-theme-toggle {
+    top:
+        calc(
+            16px +
+            env(
+                safe-area-inset-top,
+                0px
+            )
+        ) !important;
+
+    right:
+        calc(
+            16px +
+            env(
+                safe-area-inset-right,
+                0px
+            )
+        ) !important;
+}
+
+/* Projects */
+.project-card,
+.member-card,
+.project-panel,
+.add-member-panel {
+    min-width: 0;
+}
+
+.project-name,
+.project-description,
+.member-card,
+.user-result-name,
+.user-result-email {
+    overflow-wrap: anywhere;
+}
+
+.user-search-results {
+    max-width:
+        min(
+            360px,
+            calc(100vw - 28px)
+        );
+}
+
+/* Tasks */
+.task-card,
+.task-form,
+.task-subsection,
+.attachment-item,
+.comment-item {
+    min-width: 0;
+}
+
+.task-card p,
+.attachment-info,
+.comment-item {
+    overflow-wrap: anywhere;
+}
+
+.searchable-select-dropdown,
+.profile-searchable-dropdown {
+    max-width:
+        min(
+            420px,
+            calc(100vw - 28px)
+        );
+}
+
+/* Profile */
+.profile-content,
+.profile-main-card,
+.profile-account-section,
+.task-stats-filter-card {
+    min-width: 0;
+}
+
+/* Users */
+.user-card,
+.user-main-info,
+.role-panel {
+    min-width: 0;
+}
+
+.user-email,
+.user-name {
+    overflow-wrap: anywhere;
+}
+
+/* Floating tools */
+.workspace-ai-panel,
+.project-chat-panel {
+    overscroll-behavior: contain;
+}
+
+/* Toasts stay clear of phone edges/notches. */
+.Toastify__toast-container {
+    max-width: calc(100vw - 24px);
+}
+
+/* ============================================================
+   Tablet
+============================================================ */
+
+@media (max-width: 900px) {
+    .app-main-inner h1 {
+        letter-spacing: -0.025em;
+    }
+}
+
+/* ============================================================
+   Mobile
+============================================================ */
+
+@media (max-width: 768px) {
+    .app-main-inner .projects-title,
+    .app-main-inner .tasks-title,
+    .app-main-inner .users-title,
+    .app-main-inner .profile-title,
+    .app-main-inner .kanban-header h1 {
+        font-size:
+            clamp(
+                24px,
+                7.2vw,
+                31px
+            );
+    }
+
+    .app-main-inner h1 {
+        font-size:
+            clamp(
+                25px,
+                7.2vw,
+                32px
+            );
+
+        line-height: 1.15;
+    }
+
+    .app-main-inner h2 {
+        line-height: 1.2;
+    }
+
+    .app-main-inner button,
+    .app-main-inner [role="button"] {
+        min-height: 42px;
+    }
+
+    .confirm-overlay {
+        padding: 14px;
+    }
+
+    .confirm-box {
+        width: 100% !important;
+        max-width: 430px !important;
+
+        max-height:
+            calc(
+                100dvh - 28px
+            ) !important;
+    }
+
+    /* Public pages: keep the theme button away from the card. */
+    .login-page,
+    .register-page,
+    .forgot-password-page,
+    .reset-password-page {
+        align-items: flex-start !important;
+
+        padding:
+            calc(
+                74px +
+                env(
+                    safe-area-inset-top,
+                    0px
+                )
+            )
+            14px
+            calc(
+                24px +
+                env(
+                    safe-area-inset-bottom,
+                    0px
+                )
+            ) !important;
+    }
+
+    .login-card,
+    .register-card,
+    .forgot-password-card,
+    .reset-password-card {
+        width: 100% !important;
+
+        margin:
+            auto
+            0 !important;
+
+        padding:
+            28px
+            20px !important;
+
+        border-radius:
+            15px !important;
+    }
+
+    .public-theme-toggle {
+        top:
+            calc(
+                12px +
+                env(
+                    safe-area-inset-top,
+                    0px
+                )
+            ) !important;
+
+        right:
+            calc(
+                12px +
+                env(
+                    safe-area-inset-right,
+                    0px
+                )
+            ) !important;
+
+        min-height: 40px !important;
+    }
+
+    /* Projects */
+    .projects-header,
+    .tasks-header,
+    .users-header {
+        align-items: flex-start !important;
+    }
+
+    .project-panel,
+    .create-project-form,
+    .task-form {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .project-actions,
+    .task-card-actions,
+    .user-actions,
+    .confirm-actions {
+        width: 100%;
+    }
+
+    .project-actions > button,
+    .task-card-actions > button,
+    .user-actions > button {
+        min-width:
+            min(
+                145px,
+                100%
+            );
+
+        flex: 1 1 140px;
+    }
+
+    .add-member-row,
+    .comment-input-row,
+    .attachment-upload-row {
+        width: 100%;
+    }
+
+    .user-search-container {
+        min-width: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+    }
+
+    .user-search-results {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .member-card {
+        gap: 10px;
+    }
+
+    /* Tasks */
+    .tasks-page {
+        width: 100%;
+    }
+
+    .task-filter-row {
+        width: 100%;
+    }
+
+    .task-filter-project,
+    .task-search,
+    .task-filter,
+    .my-tasks-filter {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    .task-filter-project
+        .searchable-select-dropdown {
+        min-width: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .searchable-select-dropdown,
+    .profile-searchable-dropdown {
+        left: 0 !important;
+        right: auto !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .attachment-item > div {
+        min-width: 0;
+    }
+
+    .attachment-item a {
+        word-break: break-word;
+    }
+
+    /* Profile */
+    .profile-content {
+        max-width: none !important;
+    }
+
+    .profile-account-grid,
+    .skeleton-stat-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .profile-main-card,
+    .profile-skeleton,
+    .profile-account-section,
+    .task-stats-filter-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Users */
+    .user-top {
+        min-width: 0;
+    }
+
+    .user-main-info {
+        flex: 1;
+    }
+
+    .role-select-wrapper,
+    .role-select {
+        max-width: 100%;
+    }
+
+    /* Kanban */
+    .kanban-columns {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Floating assistant */
+    body .workspace-ai-root {
+        left:
+            calc(
+                12px +
+                env(
+                    safe-area-inset-left,
+                    0px
+                )
+            );
+
+        bottom:
+            calc(
+                12px +
+                env(
+                    safe-area-inset-bottom,
+                    0px
+                )
+            );
+    }
+
+    body .workspace-ai-panel {
+        width:
+            calc(
+                100vw -
+                24px -
+                env(
+                    safe-area-inset-left,
+                    0px
+                ) -
+                env(
+                    safe-area-inset-right,
+                    0px
+                )
+            ) !important;
+
+        height:
+            min(
+                620px,
+                calc(
+                    100dvh -
+                    96px -
+                    env(
+                        safe-area-inset-top,
+                        0px
+                    ) -
+                    env(
+                        safe-area-inset-bottom,
+                        0px
+                    )
+                )
+            ) !important;
+
+        max-height:
+            calc(
+                100dvh -
+                96px
+            ) !important;
+    }
+
+    body .project-chat-launcher {
+        right:
+            calc(
+                12px +
+                env(
+                    safe-area-inset-right,
+                    0px
+                )
+            ) !important;
+
+        bottom:
+            calc(
+                12px +
+                env(
+                    safe-area-inset-bottom,
+                    0px
+                )
+            ) !important;
+    }
+
+    body .project-chat-panel {
+        right:
+            calc(
+                12px +
+                env(
+                    safe-area-inset-right,
+                    0px
+                )
+            ) !important;
+
+        bottom:
+            calc(
+                82px +
+                env(
+                    safe-area-inset-bottom,
+                    0px
+                )
+            ) !important;
+
+        width:
+            calc(
+                100vw -
+                24px -
+                env(
+                    safe-area-inset-left,
+                    0px
+                ) -
+                env(
+                    safe-area-inset-right,
+                    0px
+                )
+            ) !important;
+
+        height:
+            min(
+                540px,
+                calc(
+                    100dvh -
+                    110px -
+                    env(
+                        safe-area-inset-top,
+                        0px
+                    ) -
+                    env(
+                        safe-area-inset-bottom,
+                        0px
+                    )
+                )
+            ) !important;
+
+        max-height:
+            calc(
+                100dvh -
+                110px
+            ) !important;
+    }
+
+    .Toastify__toast-container {
+        width:
+            calc(
+                100vw - 24px
+            ) !important;
+
+        left: 12px !important;
+        right: 12px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-count,
+    .tasks-count,
+    .users-count {
+        font-size: 12px;
+    }
+
+    .project-actions > button,
+    .task-card-actions > button,
+    .user-actions > button {
+        flex-basis: 100%;
+    }
+
+    .member-card {
+        flex-direction: column;
+    }
+
+    .member-card button {
+        width: 100%;
+    }
+
+    .profile-info-row {
+        grid-template-columns: 1fr !important;
+        gap: 4px !important;
+    }
+}

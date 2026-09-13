@@ -1,10 +1,57 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>task-manager-frontend</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="only light" />
+    <meta name="theme-color" content="#f5f6f8" />
+    <meta
+      name="description"
+      content="A full-stack project and task management platform for teams."
+    />
+    <title>Task Manager</title>
+
+    <script>
+      (function () {
+        try {
+          var theme =
+            localStorage.getItem("theme") === "dark"
+              ? "dark"
+              : "light";
+
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme =
+            theme === "dark" ? "dark" : "only light";
+
+          var colorSchemeMeta = document.querySelector(
+            'meta[name="color-scheme"]'
+          );
+          var themeColorMeta = document.querySelector(
+            'meta[name="theme-color"]'
+          );
+
+          if (colorSchemeMeta) {
+            colorSchemeMeta.setAttribute(
+              "content",
+              theme === "dark" ? "dark" : "only light"
+            );
+          }
+
+          if (themeColorMeta) {
+            themeColorMeta.setAttribute(
+              "content",
+              theme === "dark" ? "#111827" : "#f5f6f8"
+            );
+          }
+        } catch (error) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

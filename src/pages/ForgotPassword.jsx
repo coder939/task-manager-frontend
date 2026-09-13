@@ -1,95 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import API from "../services/api";
+import { applyTheme, getStoredTheme } from "../utils/theme";
 
 function ForgotPassword() {
 
-    // Public-page theme. Uses the same saved theme as the authenticated Layout.
-    const [darkMode, setDarkMode] = useState(() => {
-        return localStorage.getItem("theme") === "dark";
-    });
+    // Uses the same saved theme as the authenticated application.
+    const [darkMode, setDarkMode] = useState(
+        () => getStoredTheme() === "dark"
+    );
 
     useEffect(() => {
-        const root = document.documentElement;
-
-        root.style.colorScheme =
-            darkMode ? "dark" : "only light";
-
-        localStorage.setItem(
-            "theme",
-            darkMode ? "dark" : "light"
-        );
-
-        root.style.setProperty(
-            "--page-bg",
-            darkMode ? "#111827" : "#f5f6f8"
-        );
-
-        root.style.setProperty(
-            "--bg-color",
-            darkMode ? "#111827" : "#f5f6f8"
-        );
-
-        root.style.setProperty(
-            "--card-bg",
-            darkMode ? "#1f2937" : "#ffffff"
-        );
-
-        root.style.setProperty(
-            "--section-bg",
-            darkMode ? "#374151" : "#f7f7f7"
-        );
-
-        root.style.setProperty(
-            "--input-bg",
-            darkMode ? "#374151" : "#ffffff"
-        );
-
-        root.style.setProperty(
-            "--text-color",
-            darkMode ? "#f9fafb" : "#111827"
-        );
-
-        root.style.setProperty(
-            "--secondary-text",
-            darkMode ? "#d1d5db" : "#444444"
-        );
-
-        root.style.setProperty(
-            "--muted-text",
-            darkMode ? "#9ca3af" : "#777777"
-        );
-
-        root.style.setProperty(
-            "--border-color",
-            darkMode ? "#4b5563" : "#e5e7eb"
-        );
-
-        root.style.setProperty(
-            "--input-border",
-            darkMode ? "#6b7280" : "#cccccc"
-        );
-
-        root.style.setProperty(
-            "--hover-bg",
-            darkMode ? "#374151" : "#f3f4f6"
-        );
-
-        root.style.setProperty(
-            "--shadow-color",
-            darkMode
-                ? "rgba(0,0,0,0.35)"
-                : "rgba(0,0,0,0.1)"
-        );
-
-        document.body.style.backgroundColor =
-            darkMode ? "#111827" : "#f5f6f8";
-
-        document.body.style.color =
-            darkMode ? "#f9fafb" : "#111827";
-
-        document.body.style.transition =
-            "background-color 0.2s ease, color 0.2s ease";
+        applyTheme(darkMode);
     }, [darkMode]);
 
     const [email, setEmail] = useState("");

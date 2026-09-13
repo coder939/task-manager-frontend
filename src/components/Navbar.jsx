@@ -300,6 +300,7 @@ function Navbar({
                                 : "Switch to dark mode"
                         }
                         className="navbar-btn theme-toggle"
+                        aria-pressed={darkMode}
                         style={{
                             border: "none",
                             background: "transparent",
@@ -799,8 +800,36 @@ function Navbar({
 
                     @media (max-width: 768px) {
                         .app-navbar {
-                            height: 64px !important;
-                            padding: 0 12px !important;
+                            height:
+                                calc(
+                                    64px +
+                                    env(
+                                        safe-area-inset-top,
+                                        0px
+                                    )
+                                ) !important;
+
+                            padding:
+                                env(
+                                    safe-area-inset-top,
+                                    0px
+                                )
+                                calc(
+                                    12px +
+                                    env(
+                                        safe-area-inset-right,
+                                        0px
+                                    )
+                                )
+                                0
+                                calc(
+                                    12px +
+                                    env(
+                                        safe-area-inset-left,
+                                        0px
+                                    )
+                                ) !important;
+
                             gap: 8px;
                         }
 
@@ -822,6 +851,17 @@ function Navbar({
                         .navbar-actions {
                             flex-shrink: 0;
                             gap: 4px !important;
+                        }
+
+                        .mobile-menu-button,
+                        .theme-toggle,
+                        .bell-btn {
+                            min-width: 40px;
+                            min-height: 40px;
+
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
                         }
 
                         .theme-toggle {
@@ -863,16 +903,74 @@ function Navbar({
 
                         .notification-dropdown {
                             position: fixed !important;
-                            top: 70px !important;
-                            right: 10px !important;
-                            width: calc(100vw - 20px) !important;
+                            top:
+                                calc(
+                                    70px +
+                                    env(
+                                        safe-area-inset-top,
+                                        0px
+                                    )
+                                ) !important;
+                            right:
+                                calc(
+                                    10px +
+                                    env(
+                                        safe-area-inset-right,
+                                        0px
+                                    )
+                                ) !important;
+                            width:
+                                calc(
+                                    100vw -
+                                    20px -
+                                    env(
+                                        safe-area-inset-left,
+                                        0px
+                                    ) -
+                                    env(
+                                        safe-area-inset-right,
+                                        0px
+                                    )
+                                ) !important;
                             max-width: 400px !important;
+                            max-height:
+                                calc(
+                                    100dvh -
+                                    84px -
+                                    env(
+                                        safe-area-inset-top,
+                                        0px
+                                    ) -
+                                    env(
+                                        safe-area-inset-bottom,
+                                        0px
+                                    )
+                                ) !important;
                         }
                     }
 
                     @media (max-width: 480px) {
                         .app-navbar {
-                            padding: 0 9px !important;
+                            padding:
+                                env(
+                                    safe-area-inset-top,
+                                    0px
+                                )
+                                calc(
+                                    9px +
+                                    env(
+                                        safe-area-inset-right,
+                                        0px
+                                    )
+                                )
+                                0
+                                calc(
+                                    9px +
+                                    env(
+                                        safe-area-inset-left,
+                                        0px
+                                    )
+                                ) !important;
                         }
 
                         .navbar-title {
@@ -889,6 +987,27 @@ function Navbar({
                             left: 10px !important;
                             width: auto !important;
                             max-width: none !important;
+                        }
+                    }
+
+
+                    @media (max-width: 360px) {
+                        .navbar-title {
+                            max-width: 88px;
+                            font-size: 16px;
+                        }
+
+                        .mobile-menu-button,
+                        .theme-toggle,
+                        .bell-btn {
+                            min-width: 36px;
+                            min-height: 36px;
+                        }
+
+                        .logout-btn {
+                            min-width: 36px;
+                            min-height: 36px;
+                            padding: 7px !important;
                         }
                     }
                 `}
